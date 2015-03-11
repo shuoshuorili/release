@@ -71,7 +71,7 @@
 
 function init() {
     //alert("init");
-    var appVersion = "(1.2.1)";
+    var appVersion = "1.2.1";
 
     set_url();
     
@@ -160,10 +160,12 @@ function iOSversion() {
     var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
     return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
   }
-	if (/iPad/.test(navigator.platform)) {
-		var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
-		return [parseInt(v[1], 10), parseInt(v[2], 10), 0];
-	}
+  if (/iPad/.test(navigator.platform)) {
+	var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+	return [parseInt(v[1], 10), parseInt(v[2], 10), 0];
+  }
+  
+  return [0,0,0]
 }
 
 </script>
