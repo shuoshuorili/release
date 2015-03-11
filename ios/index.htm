@@ -1,0 +1,143 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>说说日历-能听懂你说话的日历</title>
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Cache" content="no-cache">
+<link href="bootstrap3.min.css" rel="stylesheet" type="text/css" />
+<!--
+<link href="offical_smartv.css" rel="stylesheet" type="text/css" />
+-->
+
+<STYLE type="text/css">
+
+#myweb{display: none;text-align:center;padding-top:100px;}
+#myios{text-align:center;display:none;width:100%;height:1400px;}
+#myios .vbuluo_logo{padding-top:200px;padding-bottom:80px;}
+
+.vbuluo_text{font-size:60px;color:#000;}
+.vbuluo_install {
+	border: 2px solid rgba(159, 196, 204, 0.5);
+	border-radius: 6px;
+	color: #000;
+	display: block;
+	font-size: 58px;
+	height: 140px;
+	margin: 240px auto 0;
+	padding: 26px 10px 10px;
+	width: 660px;
+	background-color:#eee;
+}
+
+
+
+#myios .vbuluo_install:hover{color:#fff;}
+</STYLE>
+
+</head>
+<body onLoad="downloadIos()">
+<div id="in-weixin" style="position:absolute; width:100%; height:100%; z-index:-1;display:none;">
+	<img data-act="vbuluo_globe_bg" src="weixin_bg.png" height="100%" width="100%"/>
+</div>
+
+<div id="in-web" style="display:none;">
+	<div id="myweb">
+      <div class="vbuluo_text">说说日历</div>
+			<div style="font-size:32px;margin-top:14px;">能听懂你说话的日历</div>
+			<div style="font-size:32px;margin-top:14px;">iOS版 (v1.2.1)</div>
+	    <div ><a id="s1" onclick="clickedInstall(this);return true;"  href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal.plist" class="vbuluo_install">直接安装</a></div>
+			<div ><a id="s2" onclick="clickedInstall(this);return true;"  href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal_ios7.plist" class="vbuluo_install">直接安装(ios7)</a></div>
+			<div ><a id="s3" href="TalkCal.ipa" >下载ipa文件通过itunes安装</a></div>
+	</div>
+
+	<div id="myios">
+		<br/>
+		<br/>
+		<br/>
+		<div class="vbuluo_text">说说日历</div>
+		<div style="font-size:32px;margin-top:14px;">能听懂你说话的日历</div>
+		<div style="font-size:32px;margin-top:14px;">iOS版 (v1.2.1) </div>
+		<div id="ios8" style="display:none;"><a id="s4" onclick="clickedInstall(this);return true;" href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal.plist" class="vbuluo_install">直接安装</a></div>
+		<div id="ios7" style="display:none;"><a id="s5" onclick="clickedInstall(this);return true;"  href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal_ios7.plist" class="vbuluo_install">直接安装</a></div>
+		<div id="lowVersion" style="font-size:26px;margin-top:60px;display:none;">说说日历只支持iOS7及以上系统，请更新系统后安装。</div>
+	</div>
+</div>
+
+<script src="jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="bootstrap3.min.js" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8" >
+
+function downloadIos() {
+    var sUserAgent = navigator.userAgent.toLowerCase();
+    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+		var bIsIpadOs =  /iPad/.test(navigator.platform) ;
+		var bIsAndroid = sUserAgent.match(/android/i) == "android";
+	if(bIsIphoneOs){
+		document.getElementById('myios').style.display = 'block';
+	}else if(bIsIpadOs){
+		document.getElementById('myios').style.display = 'block';
+	}else if(bIsAndroid){
+		document.getElementById('myios').style.display = 'block';
+	}else{
+		document.getElementById('myweb').style.display= 'block';
+	}
+}
+
+function is_weixin(){
+    var ua = navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i)=="micromessenger") {
+		document.getElementById('in-weixin').style.display= 'block';
+    } else {
+		document.getElementById('in-web').style.display= 'block';
+    }
+}
+
+function clickedInstall(ahref){
+	// ahref.innerHTML = "正在"＋ahref.innerHTML;
+}
+
+function append_version(appVersion){
+	document.getElementById('s1').innerHTML = document.getElementById('s1').innerHTML.concat( appVersion );
+	document.getElementById('s2').innerHTML = document.getElementById('s2').innerHTML.concat( appVersion );
+	document.getElementById('s3').innerHTML = document.getElementById('s3').innerHTML.concat( appVersion );
+	document.getElementById('s4').innerHTML = document.getElementById('s4').innerHTML.concat( appVersion );
+	document.getElementById('s5').innerHTML = document.getElementById('s5').innerHTML.concat(appVersion );
+	document.getElementById('lowverVersion').innerHTML = document.getElementById('lowserVersion').innerHTML .concat(appVersion) ;
+
+}
+
+
+function iOSversion() {
+  if (/iP(hone|od)/.test(navigator.platform)) {
+    var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+    return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+  }
+	if (/iPad/.test(navigator.platform)) {
+		var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+		return [parseInt(v[1], 10), parseInt(v[2], 10), 0];
+	}
+}
+
+is_weixin();
+
+//var appVersion = "(1.2.1)";
+//append_version(appVersion);
+
+
+var ver = iOSversion();
+if(ver[0] ==7){
+	document.getElementById("ios7").style.display = "block";
+}
+else if(ver[0] == 8){
+	document.getElementById("ios8").style.display = "block";
+}else{
+	document.getElementById("ios8").style.display = "block";
+	document.getElementById("lowVersion").style.display = "block";
+}
+</script>
+
+</body>
+</html>
+
