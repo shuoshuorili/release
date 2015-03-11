@@ -108,6 +108,19 @@ function append_version(appVersion){
 
 }
 
+function set_url(){
+   var hostname = window.location.hostname;
+   var file_suffix = ".plist";
+   if (hostname.startsWith("shuoshuorili.github.io")){
+   	var url = "itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/site/ios/TalkCal.github.plist";
+	document.getElementById('s1').href = url;
+   	document.getElementById('s4').href = url;
+   	
+   	var url_ios7 = "itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/site/ios/TalkCal_ios7.github.plist";
+   	document.getElementById('s2').href = url_ios7;
+   	document.getElementById('s5').href = url_ios7;
+   }
+}
 
 function iOSversion() {
   if (/iP(hone|od)/.test(navigator.platform)) {
@@ -121,6 +134,7 @@ function iOSversion() {
 }
 
 is_weixin();
+set_url();
 
 //var appVersion = "(1.2.1)";
 //append_version(appVersion);
