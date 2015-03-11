@@ -111,21 +111,21 @@ function append_version(appVersion){
 
 function set_url(){
    var hostname = window.location.hostname;
-   var url_prefix = "itms-services://?action=download-manifest&amp;url=";
+   var url_prefix = "itms-services://?action=download-manifest&amp;url=https://"+hostname+"/site/ios/TalkCal";
    if (hostname.startsWith("shuoshuorili.github.io")){
-   	var url = url_prefix+"https://shuoshuorili.github.io/site/ios/TalkCal.github.plist";
+   	var url = url_prefix+".github.plist";
 	document.getElementById('s1').href = url;
    	document.getElementById('s4').href = url;
    	
-   	var url_ios7 = url_prefix+"https://shuoshuorili.github.io/site/ios/TalkCal_ios7.github.plist";
+   	var url_ios7 = url_prefix+"_ios7.github.plist";
    	document.getElementById('s2').href = url_ios7;
    	document.getElementById('s5').href = url_ios7;
    }else{
-   	var url = url_prefix+"https://shuoshuorili.com/ios/TalkCal.plist";
+   	var url = url_prefix+".plist";
 	document.getElementById('s1').href = url;
    	document.getElementById('s4').href = url;
    	
-   	var url_ios7 = url_prefix+"https://shuoshuorili.com/ios/TalkCal_ios7.plist";
+   	var url_ios7 = url_prefix+"_ios7.plist";
    	document.getElementById('s2').href = url_ios7;
    	document.getElementById('s5').href = url_ios7;
    	
