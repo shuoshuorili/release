@@ -46,7 +46,7 @@
 	<div id="myweb">
       <div class="vbuluo_text">说说日历</div>
 			<div style="font-size:32px;margin-top:14px;">能听懂你说话的日历</div>
-			<div style="font-size:32px;margin-top:14px;">iOS版 (v1.2.1)</div>
+			<div id="appVersion-web" style="font-size:32px;margin-top:14px;">iOS版</div>
 	    <div ><a id="s1" onclick="clickedInstall(this);return true;"  href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal.plist" class="vbuluo_install">直接安装</a></div>
 			<div ><a id="s2" onclick="clickedInstall(this);return true;"  href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal_ios7.plist" class="vbuluo_install">直接安装(ios7)</a></div>
 			<div ><a id="s3" href="TalkCal.ipa" >下载ipa文件通过itunes安装</a></div>
@@ -58,7 +58,7 @@
 		<br/>
 		<div class="vbuluo_text">说说日历</div>
 		<div style="font-size:32px;margin-top:14px;">能听懂你说话的日历</div>
-		<div style="font-size:32px;margin-top:14px;">iOS版 (v1.2.1) </div>
+		<div id="appVersion-ios"  style="font-size:32px;margin-top:14px;">iOS版</div>
 		<div id="ios8" style="display:none;"><a id="s4" onclick="clickedInstall(this);return true;" href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal.plist" class="vbuluo_install">直接安装</a></div>
 		<div id="ios7" style="display:none;"><a id="s5" onclick="clickedInstall(this);return true;"  href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal_ios7.plist" class="vbuluo_install">直接安装</a></div>
 		<div id="lowVersion" style="font-size:26px;margin-top:60px;display:none;">说说日历只支持iOS7及以上系统，请更新系统后安装。</div>
@@ -71,10 +71,30 @@
 
 function init() {
     //alert("init");
-    var sUserAgent = navigator.userAgent.toLowerCase();
-    var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+    var appVersion = "(1.2.1)";
+
+    set_url();
+    
+    init_display();
+	
+    append_version(appVersion);
+}
+
+
+
+function init_display(){
+	//check weixin
+	var ua = navigator.userAgent.toLowerCase();
+	if(ua.match(/MicroMessenger/i)=="micromessenger") {
+		document.getElementById('in-weixin').style.display= 'block';
+	} else {
+		document.getElementById('in-web').style.display= 'block';
+	}
+    
+    	//check os type
+	var bIsIphoneOs = ua.match(/iphone os/i) == "iphone os";
 		var bIsIpadOs =  /iPad/.test(navigator.platform) ;
-		var bIsAndroid = sUserAgent.match(/android/i) == "android";
+		var bIsAndroid = ua.match(/android/i) == "android";
 	if(bIsIphoneOs){
 		document.getElementById('myios').style.display = 'block';
 	}else if(bIsIpadOs){
@@ -84,16 +104,18 @@ function init() {
 	}else{
 		document.getElementById('myweb').style.display= 'block';
 	}
-    set_url();
-}
-
-function is_weixin(){
-    var ua = navigator.userAgent.toLowerCase();
-    if(ua.match(/MicroMessenger/i)=="micromessenger") {
-		document.getElementById('in-weixin').style.display= 'block';
-    } else {
-		document.getElementById('in-web').style.display= 'block';
-    }
+	
+	//check IOS version
+	var ver = iOSversion();
+	if(ver[0] ==7){
+		document.getElementById("ios7").style.display = "block";
+	}
+	else if(ver[0] == 8){
+		document.getElementById("ios8").style.display = "block";
+	}else{
+		document.getElementById("ios8").style.display = "block";
+		document.getElementById("lowVersion").style.display = "block";
+	}
 }
 
 function clickedInstall(ahref){
@@ -101,13 +123,9 @@ function clickedInstall(ahref){
 }
 
 function append_version(appVersion){
-	document.getElementById('s1').innerHTML = document.getElementById('s1').innerHTML.concat( appVersion );
-	document.getElementById('s2').innerHTML = document.getElementById('s2').innerHTML.concat( appVersion );
-	document.getElementById('s3').innerHTML = document.getElementById('s3').innerHTML.concat( appVersion );
-	document.getElementById('s4').innerHTML = document.getElementById('s4').innerHTML.concat( appVersion );
-	document.getElementById('s5').innerHTML = document.getElementById('s5').innerHTML.concat(appVersion );
-	document.getElementById('lowverVersion').innerHTML = document.getElementById('lowserVersion').innerHTML .concat(appVersion) ;
-
+	var version_text = "iOS版("+appVersion+")"; 
+	document.getElementById('appVersion-web').innerHTML = version_text;
+	document.getElementById('appVersion-ios').innerHTML = version_text;
 }
 
 function set_url(){
@@ -148,22 +166,6 @@ function iOSversion() {
 	}
 }
 
-is_weixin();
-
-//var appVersion = "(1.2.1)";
-//append_version(appVersion);
-
-
-var ver = iOSversion();
-if(ver[0] ==7){
-	document.getElementById("ios7").style.display = "block";
-}
-else if(ver[0] == 8){
-	document.getElementById("ios8").style.display = "block";
-}else{
-	document.getElementById("ios8").style.display = "block";
-	document.getElementById("lowVersion").style.display = "block";
-}
 </script>
 
 </body>
