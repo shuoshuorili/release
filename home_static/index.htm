@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta property="qc:admins" content="354536505745346136771676375" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+<meta name='keywords' content='日历,语音日历,日程管理,日历提醒,日历记事,手机日历软件' />
+<meta name='description' content='说说日历，能听懂你说话的日历。史上最简单的日历应用，手机端按着笑脸说话，即可完成一般要按十几次或者几十次才能实现的操作。让您设置日历更简单，给您提醒更贴心。' /> 
+<link href="home_static/css/bootstrap3.min.css" rel="stylesheet" type="text/css">
+<link href="home_static/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css">
+<link href="home_static/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="home_static/css/index.css" rel="stylesheet" type="text/css">
+<title>说说日历</title>
+</head>
+<body onLoad="is_weixn()" style=" background-color: rgba(0, 0, 0, 0.8);height: 100%;overflow-x: hidden;overflow-y: auto;">
+	<div id="in-weixin" style="position:absolute; width:100%; height:100%; z-index:2;display:none;">    
+		<img data-act="vbuluo_globe_bg" src="home_static/img/weixin_bg.png" height="100%" width="100%"/>    
+	</div>
+	<div id="in-weixin-ios" style="position:absolute; width:100%; height:100%; z-index:2;display:none;">    
+		<img data-act="vbuluo_globe_bg" src="home_static/img/weixin_ios_bg.png" height="100%" width="100%"/>    
+	</div>
+	<div id="official-box" class="container-fluid" style="height: 100%;color: #fff;width:100%;display:none;">
+		<div class="row-fluid _content">
+			<div class="col-md-12">
+				<div class="_center">
+					<div>
+						<h1 class="font-bold" style="font-size: 55px;">说说日历</h1>
+						<p style="font-size: 24px;">能听懂你说话的日历</p>
+					</div>
+					<div class="_qr_content">
+						<img src="home_static/img/shuoshuorili.png" style="margin-left: -4px;border-radius:6px; width:240px;"/>
+						<p class="_p">扫描二维码安装"说说日历"应用2</p>
+					</div>
+					<div style="margin-top:30px;display:none;" id="android-download">
+						<a href="http://www.shuoshuorili.com/download/android/TalkCal.apk" style="color:#fff;" class="mydownload">点击下载</a>
+					</div>
+					<div class="go-apply-store" id="go-apply-store">
+						<a href="market://search?q=pname:com.iknowing.talkcal.activity" style="text-decoration:underline;color:#fff;">去应用商店下载</a>
+					</div>							
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="home_static/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+	<script src="home_static/js/bootstrap3.min.js" type="text/javascript"></script>
+	<script src="home_static/js/index.js" type="text/javascript"></script>
+	<script>
+		
+		//判断是否是在微信里面打开
+		function is_weixn(){  
+			var ua = navigator.userAgent.toLowerCase();  
+			if(ua.match(/MicroMessenger/i)=="micromessenger") {  
+				if(checkDeviceType() == "ios"){
+					document.getElementById('in-weixin-ios').style.display= 'block';
+				}else{
+					document.getElementById('in-weixin').style.display= 'block';
+				}
+			}else{
+				document.getElementById('official-box').style.display= 'block';
+				if(checkDeviceType() == "android"){
+					document.getElementById('android-download').style.display= 'block';
+					document.getElementById('go-apply-store').style.display= 'block';
+				}else if(checkDeviceType() == "ios"){
+					window.location.href = "http://mp.weixin.qq.com/mp/redirect?url=https://itunes.apple.com/app/id950903376";
+				}
+			}  
+		}
+		
+		//检查设备类型
+		function checkDeviceType() {
+			var ua = navigator.userAgent.toLowerCase();
+			var bIsIphoneOs = ua.match(/iphone os/i) == "iphone os";
+			var bIsIpad = ua.match(/ipad/i) == "ipad";
+			var bIsIpod = ua.match(/ipod/i) == "ipod";
+			var bIsIitouch = ua.match(/itouch/i) == "itouch";
+			var bIsAndroid = ua.match(/android/i) == "android";
+			if(bIsIphoneOs || bIsIpad || bIsIpod || bIsIitouch){
+				//去app store 下载
+				return "ios";
+			}else if(bIsAndroid){
+				return "android";
+			}
+		}
+		
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "//hm.baidu.com/hm.js?ff0b211adec23bba301cba9aefbe2420";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+	<script> document.body.onselectstart=document.body.oncontextmenu=function(){return false;};</script>
+</body>
+</html>
