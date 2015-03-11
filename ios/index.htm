@@ -39,7 +39,7 @@
 </head>
 <body onLoad="downloadIos()">
 <div id="in-weixin" style="position:absolute; width:100%; height:100%; z-index:-1;display:none;">
-	<img data-act="vbuluo_globe_bg" src="../static/img/weixin_bg.png" height="100%" width="100%"/>
+	<img data-act="vbuluo_globe_bg" src="weixin_bg.png" height="100%" width="100%"/>
 </div>
 
 <div id="in-web" style="display:none;">
@@ -83,6 +83,7 @@ function downloadIos() {
 	}else{
 		document.getElementById('myweb').style.display= 'block';
 	}
+    set_url();
 }
 
 function is_weixin(){
@@ -143,7 +144,6 @@ function iOSversion() {
 }
 
 is_weixin();
-set_url();
 
 //var appVersion = "(1.2.1)";
 //append_version(appVersion);
