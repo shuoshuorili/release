@@ -133,9 +133,9 @@ function append_version(appInfo){
 	document.getElementById('appVersion-web').innerHTML = version_text;
 	document.getElementById('appVersion-ios').innerHTML = version_text;
 
-	var info_text =  appInfo["releaseNotes"];
-	document.getElementById('appInfo-web').innerHTML = info_text;
-	document.getElementById('appInfo-ios').innerHTML = info_text;
+	var notes_text =  appInfo["releaseNotes"];
+	document.getElementById('appNotes-web').innerHTML = notes_text;
+	document.getElementById('appNotes-ios').innerHTML = notes_text;
 }
 
 function set_url(){
