@@ -48,8 +48,8 @@
 			<div style="font-size:32px;margin-top:14px;">能听懂你说话的日历</div>
 			<div id="appVersion-web" style="font-size:32px;margin-top:14px;">iOS版</div>
 			<div id="appNotes-web" style="font-size:20px;">&nbsp;</div>
-	    <div ><a id="s1" onclick="clickedInstall(this);return true;"  href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal.plist" class="vbuluo_install">直接安装</a></div>
-			<div ><a id="s2" onclick="clickedInstall(this);return true;"  href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal_ios7.plist" class="vbuluo_install">直接安装(ios7)</a></div>
+	    <div ><a id="s1" href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal.plist" class="vbuluo_install">直接安装</a></div>
+			<div ><a id="s2" href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal_ios7.plist" class="vbuluo_install">直接安装(ios7)</a></div>
 			<div ><a id="s3" href="TalkCal.ipa" >下载ipa文件通过itunes安装</a></div>
 	</div>
 
@@ -61,8 +61,8 @@
 		<div style="font-size:32px;margin-top:14px;">能听懂你说话的日历</div>
 		<div id="appVersion-ios"  style="font-size:32px;margin-top:14px;">iOS版</div>
 		<div id="appNotes-ios" style="font-size:20px;">&nbsp;</div>
-		<div id="ios8" style="display:none;"><a id="s4" onclick="clickedInstall(this);return true;" href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal.plist" class="vbuluo_install">直接安装</a></div>
-		<div id="ios7" style="display:none;"><a id="s5" onclick="clickedInstall(this);return true;"  href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal_ios7.plist" class="vbuluo_install">直接安装</a></div>
+		<div id="ios8" style="display:none;"><a id="s4" href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal.plist" class="vbuluo_install">直接安装</a></div>
+		<div id="ios7" style="display:none;"><a id="s5" href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal_ios7.plist" class="vbuluo_install">直接安装</a></div>
 		<div id="lowVersion" style="font-size:26px;margin-top:60px;display:none;">说说日历只支持iOS7及以上系统，请更新系统后安装。</div>
 	</div>
 </div>
@@ -141,7 +141,9 @@ function append_version(appInfo){
 function set_url(){
    var hostname = window.location.hostname;
    var url_prefix = "itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/site/ios/TalkCal";
-   if (hostname.match("/shuoshuorili.github.io/")){
+
+	 var patt = /shuoshuorili.github.io/g;
+   if (patt.test(hostname)){
    	var url = url_prefix+".github.plist";
 	document.getElementById('s1').href = url;
    	document.getElementById('s4').href = url;
