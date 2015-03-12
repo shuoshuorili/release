@@ -6,7 +6,7 @@
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Cache-control" content="no-cache">
 <meta http-equiv="Cache" content="no-cache">
-<link href="../static/bootstrap3.min.css" rel="stylesheet" type="text/css" />
+<link href="../static/css/bootstrap3.min.css" rel="stylesheet" type="text/css" />
 <!--
 <link href="offical_smartv.css" rel="stylesheet" type="text/css" />
 -->
@@ -131,7 +131,7 @@ function append_version(appVersion){
 function set_url(){
    var hostname = window.location.hostname;
    var url_prefix = "itms-services://?action=download-manifest&amp;url=https://"+hostname+"/site/ios/TalkCal";
-   if (hostname.startsWith("shuoshuorili.github.io")){
+   if (hostname.match("/shuoshuorili.github.io/")){
    	var url = url_prefix+".github.plist";
 	document.getElementById('s1').href = url;
    	document.getElementById('s4').href = url;
