@@ -1,0 +1,134 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>说说日历-能听懂你说话的日历(尝鲜版)</title>
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-control" content="no-cache">
+<meta http-equiv="Cache" content="no-cache">
+<link href="../static/css/bootstrap3.min.css" rel="stylesheet" type="text/css" />
+<!--
+<link href="offical_smartv.css" rel="stylesheet" type="text/css" />
+-->
+
+<STYLE type="text/css">
+
+#myweb{display: none;text-align:center;padding-top:100px;}
+#myios{text-align:center;display:none;width:100%;height:1400px;}
+#myios .vbuluo_logo{padding-top:200px;padding-bottom:80px;}
+
+.vbuluo_text{font-size:60px;color:#000;}
+.vbuluo_install {
+	border: 2px solid rgba(159, 196, 204, 0.5);
+	border-radius: 6px;
+	color: #000;
+	display: block;
+	font-size: 58px;
+	height: 140px;
+	margin: 240px auto 0;
+	padding: 26px 10px 10px;
+	width: 660px;
+	background-color:#eee;
+}
+
+
+
+#myios .vbuluo_install:hover{color:#fff;}
+</STYLE>
+
+</head>
+<body onLoad="init()">
+<div id="in-weixin" style="position:absolute; width:100%; height:100%; z-index:-1;display:none;">
+	<img data-act="vbuluo_globe_bg" src="weixin_bg.png" height="100%" width="100%"/>
+</div>
+
+<div id="in-web" style="display:none;">
+      <div class="vbuluo_text">说说日历</div>
+			<div style="font-size:32px;margin-top:14px;">能听懂你说话的日历</div>
+			<div style="font-size:32px;margin-top:14px;">安卓版</div>
+	    <div id="listApp"></div>
+</div>
+
+<script src="../static/js/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="../static/js/bootstrap3.min.js" type="text/javascript"></script>
+<script src="../static/js/mustache.min.js" type="text/javascript"></script>
+<script type="text/javascript" charset="utf-8" >
+
+function init() {
+    //alert("init");
+    var url_json =  "http://" + window.location.hostname + "/download/android/TalkCal.json";
+		var url_apk_base =  "http://" + window.location.hostname + "/download/android/";
+
+		$.getJSON(url_json, function(json) {
+		    console.log(json); // this will show the info it in firebug console
+				var  template = '{{#results}}<div><a href="' + url_apk_base + '{{filename}}" class="vbuluo_install">下载安装({{version}})</a> {{notes}} </div>{{/results}}';
+				var output = Mustache.render(template, json);
+				document.getElementById('listApp').innerHTML = output;
+		});
+
+		set_url();
+
+    init_display();
+
+}
+
+
+
+function init_display(){
+	//check weixin
+	var ua = navigator.userAgent.toLowerCase();
+	var patt = /MicroMessenger/i
+	if(patt.test(ua)) {
+		document.getElementById('in-weixin').style.display= 'block';
+	} else {
+		document.getElementById('in-web').style.display= 'block';
+	}
+}
+
+function clickedInstall(ahref){
+	// ahref.innerHTML = "正在"＋ahref.innerHTML;
+}
+
+function set_url(){
+   var hostname = window.location.hostname;
+   var url_prefix = "itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/site/ios/TalkCal";
+
+	 var patt = /shuoshuorili.github.io/i;
+   if (patt.test(hostname)){
+   	var url = url_prefix+".github.plist";
+	document.getElementById('s1').href = url;
+   	document.getElementById('s4').href = url;
+
+   	var url_ios7 = url_prefix+"_ios7.github.plist";
+   	document.getElementById('s2').href = url_ios7;
+   	document.getElementById('s5').href = url_ios7;
+
+   }else{
+   	var url = url_prefix+".plist";
+	document.getElementById('s1').href = url;
+   	document.getElementById('s4').href = url;
+
+   	var url_ios7 = url_prefix+"_ios7.plist";
+   	document.getElementById('s2').href = url_ios7;
+   	document.getElementById('s5').href = url_ios7;
+
+   }
+}
+
+function iOSversion() {
+  if (/iP(hone|od)/.test(navigator.platform)) {
+    var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+    return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+  }
+  if (/iPad/.test(navigator.platform)) {
+	var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+	return [parseInt(v[1], 10), parseInt(v[2], 10), 0];
+  }
+
+  return [0,0,0]
+}
+
+</script>
+
+</body>
+</html>
