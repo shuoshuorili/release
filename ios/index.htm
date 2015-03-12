@@ -75,7 +75,9 @@
 
 function init() {
     //alert("init");
-		$.getJSON("TalkCal_update_ios.json", function(json) {
+    var url_json =  "http://" + window.location.hostname + "/download/ios/TalkCal_update_ios.json";
+
+		$.getJSON("url_json, function(json) {
 		    console.log(json); // this will show the info it in firebug console
 				var appInfo = json["results"][0];
 				append_version(appInfo);
