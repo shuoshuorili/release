@@ -91,16 +91,19 @@ function init() {
 function init_display(){
 	//check weixin
 	var ua = navigator.userAgent.toLowerCase();
-	if(ua.match(/MicroMessenger/i)=="micromessenger") {
+	var patt = /MicroMessenger/i
+	if(patt.test(ua)) {
 		document.getElementById('in-weixin').style.display= 'block';
 	} else {
 		document.getElementById('in-web').style.display= 'block';
 	}
 
     	//check os type
-	var bIsIphoneOs = ua.match(/iphone os/i) == "iphone os";
-		var bIsIpadOs =  /iPad/.test(navigator.platform) ;
-		var bIsAndroid = ua.match(/android/i) == "android";
+
+	var bIsIphoneOs = /iphone os/i.test(ua);
+	var bIsIpadOs =  /iPad/.test(navigator.platform) ;
+	var bIsAndroid = /android/i.test(ua);
+
 	if(bIsIphoneOs){
 		document.getElementById('myios').style.display = 'block';
 	}else if(bIsIpadOs){
@@ -142,7 +145,7 @@ function set_url(){
    var hostname = window.location.hostname;
    var url_prefix = "itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/site/ios/TalkCal";
 
-	 var patt = /shuoshuorili.github.io/g;
+	 var patt = /shuoshuorili.github.io/i;
    if (patt.test(hostname)){
    	var url = url_prefix+".github.plist";
 	document.getElementById('s1').href = url;
