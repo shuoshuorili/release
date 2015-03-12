@@ -59,9 +59,7 @@ function init() {
 
 		$.getJSON(url_json, function(json) {
 		    console.log(json); // this will show the info it in firebug console
-				var  template = '{{#results}}<div><a href="' + url_apk_base + '{{filename}}" class="vbuluo_install">下载安装({{version}})</a>
-				  <div style="text-align:center;font-size:20px;"> {{notes}}</div>
-				  </div>{{/results}}';
+				var  template = '{{#results}}<div><a href="' + url_apk_base + '{{filename}}" class="vbuluo_install">下载安装({{version}})</a> <div style="text-align:center;font-size:20px;"> {{notes}}</div>  </div>{{/results}}';
 				var output = Mustache.render(template, json);
 				document.getElementById('listApp').innerHTML = output;
 		});
