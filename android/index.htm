@@ -66,10 +66,7 @@ function init() {
 				document.getElementById('listApp').innerHTML = output;
 		});
 
-		set_url();
-
     init_display();
-
 }
 
 
@@ -83,49 +80,6 @@ function init_display(){
 	} else {
 		document.getElementById('in-web').style.display= 'block';
 	}
-}
-
-function clickedInstall(ahref){
-	// ahref.innerHTML = "正在"＋ahref.innerHTML;
-}
-
-function set_url(){
-   var hostname = window.location.hostname;
-   var url_prefix = "itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/site/ios/TalkCal";
-
-	 var patt = /shuoshuorili.github.io/i;
-   if (patt.test(hostname)){
-   	var url = url_prefix+".github.plist";
-	document.getElementById('s1').href = url;
-   	document.getElementById('s4').href = url;
-
-   	var url_ios7 = url_prefix+"_ios7.github.plist";
-   	document.getElementById('s2').href = url_ios7;
-   	document.getElementById('s5').href = url_ios7;
-
-   }else{
-   	var url = url_prefix+".plist";
-	document.getElementById('s1').href = url;
-   	document.getElementById('s4').href = url;
-
-   	var url_ios7 = url_prefix+"_ios7.plist";
-   	document.getElementById('s2').href = url_ios7;
-   	document.getElementById('s5').href = url_ios7;
-
-   }
-}
-
-function iOSversion() {
-  if (/iP(hone|od)/.test(navigator.platform)) {
-    var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
-    return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
-  }
-  if (/iPad/.test(navigator.platform)) {
-	var v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
-	return [parseInt(v[1], 10), parseInt(v[2], 10), 0];
-  }
-
-  return [0,0,0]
 }
 
 </script>
