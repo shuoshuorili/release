@@ -71,13 +71,18 @@
 
 function init() {
     //alert("init");
-    var appVersion = "1.2.2";
+		$.getJSON("TalkCal_update_ios.json", function(json) {
+		    console.log(json); // this will show the info it in firebug console
+				var appVersion = "1.2";
+				appVersion = json["results"][0]["version"];
+				append_version(appVersion);
+		});
 
-    set_url();
+
+		set_url();
 
     init_display();
 
-    append_version(appVersion);
 }
 
 
