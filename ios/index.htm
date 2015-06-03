@@ -150,12 +150,23 @@ function set_url(){
    var url_prefix = "itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/site/ios/TalkCal";
 
 	 var patt = /shuoshuorili.github.io/i;
+   var patt_ssrl = /shuoshuorili.com/i;
    if (patt.test(hostname)){
    	var url = url_prefix+".github.plist";
-	document.getElementById('s1').href = url;
+		document.getElementById('s1').href = url;
    	document.getElementById('s4').href = url;
 
    	var url_ios7 = url_prefix+"_ios7.github.plist";
+   	document.getElementById('s2').href = url_ios7;
+   	document.getElementById('s5').href = url_ios7;
+
+	}else if( (patt_ssrl.test(hostname))){
+		var url_prefix = "itms-services://?action=download-manifest&amp;url=https://www.vbuluo.com/site/ios/TalkCal";
+   	var url = url_prefix+".plist";
+		document.getElementById('s1').href = url;
+   	document.getElementById('s4').href = url;
+
+   	var url_ios7 = url_prefix+"_ios7.plist";
    	document.getElementById('s2').href = url_ios7;
    	document.getElementById('s5').href = url_ios7;
 
