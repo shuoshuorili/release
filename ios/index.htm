@@ -49,7 +49,7 @@
 			<div id="appVersion-web" style="font-size:32px;margin-top:14px;">iOS版</div>
 			<div id="appNotes-web" style="font-size:20px;">&nbsp;</div>
 	    <div ><a id="s1" href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/site/ios/TalkCal.plist" class="vbuluo_install">直接安装</a></div>
-			<div ><a id="s2" href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/site/ios/TalkCal_ios7.plist" class="vbuluo_install">直接安装(ios7)</a></div>
+			<div ><a id="s2" href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/site/ios/TalkCal_ios8.plist" class="vbuluo_install">直接安装(iOS8)</a></div>
 
 			<div ><a href="http://itunes.apple.com/app/id950903376?mt=8">去AppStore安装正式版</a></div>
 	</div>
@@ -62,10 +62,10 @@
 		<div style="font-size:32px;margin-top:14px;">能听懂你说话的日历</div>
 		<div id="appVersion-ios"  style="font-size:32px;margin-top:14px;">iOS版</div>
 		<div id="appNotes-ios" style="font-size:20px;">&nbsp;</div>
-		<div id="ios8" style="display:none;"><a id="s4" href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal.plist" class="vbuluo_install">直接安装</a></div>
-		<div id="ios7" style="display:none;"><a id="s5" href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal_ios7.plist" class="vbuluo_install">直接安装</a></div>
+		<div id="ios9" style="display:none;"><a id="s4" href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal.plist" class="vbuluo_install">直接安装</a></div>
+		<div id="ios8" style="display:none;"><a id="s5" href="itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/ruyi/ios/TalkCal_ios8.plist" class="vbuluo_install">直接安装</a></div>
 		<div ><a href="http://itunes.apple.com/app/id950903376?mt=8">去AppStore安装正式版</a></div>
-		<div id="lowVersion" style="font-size:26px;margin-top:60px;display:none;">说说日历只支持iOS7及以上系统，请更新系统后安装。</div>
+		<div id="lowVersion" style="font-size:26px;margin-top:60px;display:none;">说说日历只支持iOS8及以上系统，请更新系统后安装。</div>
 	</div>
 </div>
 
@@ -118,15 +118,13 @@ function init_display(){
 
 	//check IOS version
 	var ver = iOSversion();
-	if(ver[0] ==7){
-		document.getElementById("ios7").style.display = "block";
-	}
-	else if(ver[0] == 8){
+	if(ver[0] ==8){
 		document.getElementById("ios8").style.display = "block";
-	}else if(ver[0] ==9){
-		document.getElementById("ios7").style.display = "block";
 	}else{
-		document.getElementById("ios8").style.display = "block";
+		document.getElementById("ios9").style.display = "block";
+	}
+	
+	if (ver[0]<8){
 		document.getElementById("lowVersion").style.display = "block";
 	}
 }
@@ -149,35 +147,36 @@ function set_url(){
    var hostname = window.location.hostname;
    var url_prefix = "itms-services://?action=download-manifest&amp;url=https://shuoshuorili.github.io/site/ios/TalkCal";
 
-	 var patt = /shuoshuorili.github.io/i;
+	// var patt = /shuoshuorili.github.io/i;
    var patt_ssrl = /shuoshuorili.com/i;
-   if (patt.test(hostname)){
-   	var url = url_prefix+".github.plist";
-		document.getElementById('s1').href = url;
-   	document.getElementById('s4').href = url;
-
-   	var url_ios7 = url_prefix+"_ios7.github.plist";
-   	document.getElementById('s2').href = url_ios7;
-   	document.getElementById('s5').href = url_ios7;
-
-	}else if( (patt_ssrl.test(hostname))){
+  //  if (patt.test(hostname)){
+  //  	var url = url_prefix+".github.plist";
+	// 	document.getElementById('s1').href = url;
+  //  	document.getElementById('s4').href = url;
+	//
+  //  	var url_ios8 = url_prefix+"_ios8.github.plist";
+  //  	document.getElementById('s2').href = url_ios8;
+  //  	document.getElementById('s5').href = url_ios8;
+	//
+	// }else
+	if( (patt_ssrl.test(hostname))){
 		var url_prefix = "itms-services://?action=download-manifest&amp;url=https://www.vbuluo.com/ssrl/site/ios/TalkCal";
    	var url = url_prefix+".plist";
 		document.getElementById('s1').href = url;
    	document.getElementById('s4').href = url;
 
-   	var url_ios7 = url_prefix+"_ios7.plist";
-   	document.getElementById('s2').href = url_ios7;
-   	document.getElementById('s5').href = url_ios7;
+   	var url_ios8 = url_prefix+"_ios8.plist";
+   	document.getElementById('s2').href = url_ios8;
+   	document.getElementById('s5').href = url_ios8;
 
    }else{
    	var url = url_prefix+".plist";
-	document.getElementById('s1').href = url;
+	  document.getElementById('s1').href = url;
    	document.getElementById('s4').href = url;
 
-   	var url_ios7 = url_prefix+"_ios7.plist";
-   	document.getElementById('s2').href = url_ios7;
-   	document.getElementById('s5').href = url_ios7;
+   	var url_ios8 = url_prefix+"_ios8.plist";
+   	document.getElementById('s2').href = url_ios8;
+   	document.getElementById('s5').href = url_ios8;
 
    }
 }
